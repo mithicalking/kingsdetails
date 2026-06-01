@@ -9,6 +9,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
+    --light-blue: #00daff;
     --purple: #7c3aed;
     --purple-dark: #5b21b6;
     --purple-light: #a78bfa;
@@ -69,7 +70,7 @@
   .section-inner { max-width: 1060px; margin: 0 auto; }
   .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--purple-light); margin-bottom: 0.6rem; }
   .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: 2px; color: var(--white); margin-bottom: 0.75rem; }
-  .section-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 520px; margin-bottom: 3rem; }
+  .section-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 620px; margin-bottom: 2rem; }
   .divider { border: none; border-top: 1px solid rgba(124,58,237,0.15); margin: 0; }
 
   /* SERVICES */
@@ -164,10 +165,11 @@
 <nav>
   <div class="nav-logo"><span>King's</span> Detailer</div>
   <div class="nav-links">
-    <a href="#services">Services</a>
-    <a href="#why">Why Us</a>
-    <a href="#contact" class="nav-cta">Get a Quote</a>
+    <a href="index.html">Home</a>
+    <a href="team.html">Team</a>
+    <a href="works.html">Services</a>
   </div>
+  <a href="index.html#contact" class="nav-cta">Book a Detail</a>
 </nav>
 
 <!-- HERO -->
@@ -179,7 +181,7 @@
   <p class="hero-sub">Premium Auto Detailing</p>
   <p>Professional interior and exterior detailing that makes your car look brand new every single time.</p>
   <div class="hero-btns">
-    <a href="#contact" class="btn-primary">Get a Free Quote</a>
+    <a href="#contact" class="btn-primary">Get a Booking</a>
     <a href="#services" class="btn-outline">View Services</a>
   </div>
 </div>
@@ -191,7 +193,7 @@
   <div class="section-inner">
     <p class="section-label">What We Offer</p>
     <h2 class="section-title">Our Services</h2>
-    <p class="section-desc">Base prices listed below. Final quote may vary depending on the condition of your vehicle — we'll always give you a fair assessment upfront.</p>
+    <p class="section-desc">Base prices listed below. Final booking price may vary depending on the condition of your vehicle — we'll always give you a fair assessment upfront.</p>
     <div class="services-grid">
       <div class="service-card">
         <div class="service-accent"></div>
@@ -241,9 +243,9 @@
 <section id="why">
   <div class="section-inner">
     <p class="section-label">Why Choose Us</p>
-    <h2 class="section-title">The King's Difference</h2>
+    <h2 class="section-title">Our Difference</h2>
     <div class="perks-grid">
-      <div class="perk"><div class="perk-num">01</div><p class="perk-title">Fair Pricing</p><p class="perk-text">We quote based on your cars condition. No hidden fees or shady business</p></div>
+      <div class="perk"><div class="perk-num">01</div><p class="perk-title">Fair Pricing</p><p class="perk-text">We place a price based on your cars condition. No hidden fees or shady business</p></div>
       <div class="perk"><div class="perk-num">02</div><p class="perk-title">Local & Trusted</p><p class="perk-text">Proudly serving Denton, TX. We treat every car like it's our own.</p></div>
       <div class="perk"><div class="perk-num">03</div><p class="perk-title">Attention to Detail</p><p class="perk-text">Every corner, crevice, and surface gets the care it deserves. No shortcuts.</p></div>
       <div class="perk"><div class="perk-num">04</div><p class="perk-title">Quick Turnaround</p><p class="perk-text">We work efficiently so you're back on the road. Always clean and on time.</p></div>
@@ -259,8 +261,8 @@
     <div class="contact-wrap">
       <div>
         <p class="section-label">Book Now</p>
-        <h2 class="section-title">Get a Quote</h2>
-        <p class="section-desc" style="margin-bottom: 2rem;">Fill out the form and we'll get back to you with a custom quote based on your vehicle.</p>
+        <h2 class="section-title">Get a Booking</h2>
+        <p class="section-desc" style="margin-bottom: 2rem;">Fill out the form and we'll get back to you with a custom booking price based on your vehicle.</p>
         <div class="contact-info">
           <div class="contact-item">
             <div class="contact-item-icon">📍</div>
@@ -340,8 +342,8 @@
         <!-- Success message shown after submit -->
         <div class="success-msg" id="successMsg">
           <div class="success-icon">👑</div>
-          <strong>Quote request sent!</strong>
-          We'll reach out shortly with your custom quote.
+          <strong>Request sent!</strong>
+          We'll reach out shortly with your booking details.
         </div>
       </div>
     </div>
@@ -351,7 +353,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo"><span>King's</span> Detailer</div>
-  <p class="footer-copy">© 2025 King's Detailer · Denton, TX · All rights reserved</p>
+  <p class="footer-copy">© 2025-2026 King's Detailer · Denton, TX · All rights reserved</p>
 </footer>
 
 <script>

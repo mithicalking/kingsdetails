@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>King's Detailer — Team & Work</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --light-blue: #00daff;
+    --purple: #7c3aed;
+    --purple-dark: #5b21b6;
+    --purple-light: #a78bfa;
+    --black: #0a0a0a;
+    --dark: #111118;
+    --card: #16161f;
+    --border: rgba(124,58,237,0.25);
+    --text: #f0eeff;
+    --muted: #9d9db5;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 2px; color: var(--purple-light); }
+  .nav-logo span { color: var(--white); }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--purple-light); }
+  .nav-cta { background: var(--purple); color: #fff !important; padding: 0.5rem 1.2rem; border-radius: 6px; transition: background 0.2s !important; }
+  .nav-cta:hover { background: var(--purple-dark) !important; }
+
+  .hero { position: relative; min-height: 84vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 60% 50% at 50% 20%, rgba(109,40,217,0.35) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 80% 80%, rgba(124,58,237,0.15) 0%, transparent 60%); }
+  .hero-grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(124,58,237,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.07) 1px, transparent 1px); background-size: 48px 48px; }
+  .hero-badge { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(124,58,237,0.15); border: 1px solid var(--border); border-radius: 100px; padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--purple-light); margin-bottom: 1.5rem; }
+  .hero h1 { position: relative; z-index: 1; font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 9vw, 7rem); line-height: 1; letter-spacing: 3px; color: var(--white); margin-bottom: 0.3rem; }
+  .hero h1 span { color: var(--purple-light); }
+  .hero-sub { position: relative; z-index: 1; font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.5rem, 4vw, 2.8rem); letter-spacing: 4px; color: var(--muted); margin-bottom: 1.5rem; }
+  .hero p { position: relative; z-index: 1; max-width: 560px; font-size: 1rem; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+  .hero-btns { position: relative; z-index: 1; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+  .btn-primary, .btn-outline {
+    border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; letter-spacing: 0.3px; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary { background: var(--purple); color: #fff; padding: 0.85rem 2rem; }
+  .btn-primary:hover { background: var(--purple-dark); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--text); padding: 0.85rem 2rem; border: 1px solid var(--border); }
+  .btn-outline:hover { border-color: var(--purple-light); transform: translateY(-2px); }
+
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1060px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--purple-light); margin-bottom: 0.6rem; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: 2px; color: var(--white); margin-bottom: 0.75rem; }
+  .section-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 620px; margin-bottom: 2rem; }
+  .divider { border: none; border-top: 1px solid rgba(124,58,237,0.15); margin: 0; }
+
+  .content-grid { display: grid; gap: 1.75rem; }
+  .team-hero-card { position: relative; overflow: hidden; border-radius: 20px; border: 1px solid var(--border); background: var(--card); box-shadow: 0 24px 40px rgba(15, 23, 42, 0.18); }
+  .team-hero-card img { width: 100%; height: 520px; object-fit: cover; display: block; }
+  .team-copy { padding: 2rem; }
+  .team-copy h3 { font-size: 2rem; color: var(--white); margin-bottom: 1rem; }
+  .team-copy p { color: var(--muted); font-size: 0.98rem; line-height: 1.75; }
+
+  .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .detail-card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; transition: transform 0.2s, border-color 0.2s; }
+  .detail-card:hover { border-color: var(--purple-light); transform: translateY(-4px); }
+  .detail-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+  .detail-card-body { padding: 1.5rem; }
+  .detail-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; color: var(--white); margin-bottom: 0.8rem; }
+  .detail-card p { color: var(--muted); line-height: 1.7; font-size: 0.95rem; }
+  .detail-list { margin-top: 1.25rem; display: grid; gap: 0.8rem; }
+  .detail-list li { color: var(--text); font-size: 0.95rem; list-style: none; position: relative; padding-left: 1.7rem; }
+  .detail-list li::before { content: '•'; position: absolute; left: 0; top: 0; color: var(--purple-light); font-size: 1.2rem; line-height: 1; }
+
+  .feature-badge { display: inline-block; margin-top: 1.5rem; padding: 0.55rem 1rem; border-radius: 999px; background: rgba(124,58,237,0.15); color: var(--purple-light); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px; }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .team-hero-card img { height: 360px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span>King's</span> Detailer</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="team.html">Team</a>
+    <a href="works.html">Services</a>
+  </div>
+  <a href="index.html#contact" class="nav-cta">Book a Detail</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-badge">Meet The Team</div>
+  <h1>King's<br><span>Detailer Team</span></h1>
+  <p class="hero-sub">Trusted for every interior and exterior detail</p>
+  <div class="hero-btns">
+    <a href="#team" class="btn-primary">Meet the Team</a>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<section id="team">
+  <div class="section-inner">
+    <p class="section-label">The Team</p>
+    <h2 class="section-title">One Team, One Standard</h2>
+    <p class="section-desc">Meet the people that make every detail count. We combine precision and trust to keep your vehicle looking its best.</p>
+    <div class="content-grid">
+      <div class="team-hero-card">
+        <img src="(placeholder)" alt="detailing in progress" />
+      </div>
+      <div class="team-copy">
+        <h3>Dedicated Local Detailers</h3>
+        <p>We take attention to detail to the next level, cleaning the places you didn't even know were there.</p>
+        <p>We focus on clear communication, reliable service, and smooth scheduling. That means your appointment runs on time, your vehicle gets the attention it deserves, and the finished result is a clean ride you can trust.</p>
+        <span class="feature-badge">Based in Denton, TX</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-logo"><span>King's</span> Detailer</div>
+  <p class="footer-copy">© 2026 King's Detailer · Denton, TX · All rights reserved</p>
+</footer>
+
+</body>
+</html>
