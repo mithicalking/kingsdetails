@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta property="og:title" content="King's Detailer — Denton, TX" />
+<meta property="og:description" content="Premium car detailing in Denton, TX." />
+<meta property="og:image" content="og-image.jpg" />
+<meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta name="description" content="King's Detailer offers premium interior and exterior car detailing in Denton, TX. Book your detail today." />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>King's Detailer — Denton, TX</title>
@@ -185,8 +191,9 @@
     <a href="index.html">Home</a>
     <a href="team.html">Team</a>
     <a href="works.html">Services</a>
+    <a href="privacy.html">Privacy</a>
   </div>
-  <a href="index.html#contact" class="nav-cta">Book a Detail</a>
+  <a href="booking.html" class="nav-cta">Book a Detail</a>
 </nav>
 
 <!-- HERO -->
@@ -199,7 +206,7 @@
   <p class="hero-sub">Premium Auto Detailing</p>
   <p>Professional interior and exterior detailing that makes your car look brand new every single time.</p>
   <div class="hero-btns">
-    <a href="#contact" class="btn-primary">Get a Booking</a>
+    <a href="booking.html" class="btn-primary">Get a Booking</a>
     <a href="#services" class="btn-outline">View Services</a>
   </div>
 </div>
@@ -226,7 +233,7 @@
         <div class="service-icon">✨</div>
         <div class="service-name">Basic Exterior</div>
         <p class="service-desc">Hand wash, wheel cleaning, tire shine, and a polished exterior that turns heads.</p>
-        <div class="service-price"><span class="price-from">From</span><span class="price-num">$100</span></div>
+        <div class="service-price"><span class="price-from">From</span><span class="price-num">$95</span></div>
         <p class="price-note">*Final price based on vehicle condition</p>
       </div>
       <div class="service-card featured">
@@ -235,7 +242,7 @@
         <div class="service-icon">👑</div>
         <div class="service-name">Full Detail</div>
         <p class="service-desc">The complete package — full interior + exterior detailing for a showroom finish, inside and out.</p>
-        <div class="service-price"><span class="price-from">From</span><span class="price-num">$150</span></div>
+        <div class="service-price"><span class="price-from">From</span><span class="price-num">$190</span></div>
         <p class="price-note">*Final price based on vehicle condition</p>
       </div>
     </div>
@@ -271,102 +278,6 @@
   </div>
 </section>
 
-<hr class="divider"/>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-inner">
-    <div class="contact-wrap">
-      <div>
-        <p class="section-label">Book Now</p>
-        <h2 class="section-title">Get a Booking</h2>
-        <p class="section-desc" style="margin-bottom: 2rem;">Fill out the form and we'll get back to you with a custom booking price based on your vehicle.</p>
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-item-icon">📍</div>
-            <div><p class="contact-item-label">Location</p><p class="contact-item-val">Denton, TX</p></div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">
-                <img src="https://cdn3.emoji.gg/emojis/8635_instagram.png" alt="Instagram Logo" width="22" length="22">
-            </div>
-            <div><p class="contact-item-label">Instagram</p><p class="contact-item-val">@kings.detailer</p></div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">📧</div>
-            <div><p class="contact-item-label">Email</p><p class="contact-item-val">mkingdetails@gmail.com</p></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- NETLIFY FORM -->
-      <!-- The key parts: name="quote-request", data-netlify="true", netlify-honeypot for spam -->
-      <div>
-        <form
-          name="quote-request"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          id="quoteForm"
-        >
-          <!-- Hidden input Netlify requires -->
-          <input type="hidden" name="form-name" value="quote-request" />
-          <!-- Honeypot spam trap — hidden from real users -->
-          <p style="display:none"><label>Don't fill this out: <input name="bot-field"/></label></p>
-
-          <div class="contact-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="first-name">First Name</label>
-                <input type="text" id="first-name" name="first-name" placeholder="Jordan" required/>
-              </div>
-              <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" name="last-name" placeholder="Smith" required/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" placeholder="(940) 000-0000" required/>
-            </div>
-            <div class="form-group">
-              <label for="service">Service</label>
-              <select id="service" name="service" required>
-                <option value="">Select a service...</option>
-                <option value="Basic Interior — $110+">Basic Interior — $110+</option>
-                <option value="Basic Exterior — $100+">Basic Exterior — $100+</option>
-                <option value="Full Detail — $150+">Full Detail — $150+</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="addons">Add-Ons</label>
-              <select id="addons" name="addons">
-                <option value="None">None</option>
-                <option value="Pet Hair Removal (+$20)">Pet Hair Removal (+$20)</option>
-                <option value="Wax Coating (+$40)">Wax Coating (+$40)</option>
-                <option value="Both (+$60)">Both (+$60)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="vehicle">Vehicle & Notes</label>
-              <textarea id="vehicle" name="vehicle" placeholder="Year, make, model — anything we should know about the condition..."></textarea>
-            </div>
-            <button type="submit" class="btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem;">
-              Send Quote Request
-            </button>
-          </div>
-        </form>
-
-        <!-- Success message shown after submit -->
-        <div class="success-msg" id="successMsg">
-          <div class="success-icon">👑</div>
-          <strong>Request sent!</strong>
-          We'll reach out shortly with your booking details.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer>

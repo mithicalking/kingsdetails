@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Book a Detail — King's Detailer</title>
+<meta name="description" content="Book your car detail with King's Detailer in Denton, TX. Choose your service, pick a date, and we'll take care of the rest." />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #7c3aed;
+    --purple-dark: #5b21b6;
+    --purple-light: #a78bfa;
+    --black: #0a0a0a;
+    --dark: #111118;
+    --card: #16161f;
+    --border: rgba(124,58,237,0.25);
+    --border-active: rgba(167,139,250,0.6);
+    --text: #f0eeff;
+    --muted: #9d9db5;
+    --white: #ffffff;
+    --input-bg: #0f0f17;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 2px; color: var(--purple-light); }
+  .nav-logo span { color: var(--white); }
+  .brand { display: inline-flex; align-items: center; gap: 0.6rem; }
+  .brand-logo { width: 52px; height: 52px; flex-shrink: 0; object-fit: cover; object-position: center; }
+  .nav-links {
+    position: absolute; left: 51%; top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex; gap: 2rem;
+  }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--purple-light); }
+  .nav-cta { background: var(--purple); color: #fff !important; padding: 0.5rem 1.2rem; border-radius: 6px; transition: background 0.2s !important; }
+  .nav-cta:hover { background: var(--purple-dark) !important; color: #fff !important; }
+
+  /* PAGE HEADER */
+  .page-header {
+    position: relative; padding: 5rem 2rem 4rem; text-align: center; overflow: hidden;
+  }
+  .page-header-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(109,40,217,0.32) 0%, transparent 70%);
+  }
+  .page-header-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: linear-gradient(rgba(124,58,237,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.07) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .page-header-badge {
+    position: relative; z-index: 1;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(124,58,237,0.15); border: 1px solid var(--border);
+    border-radius: 100px; padding: 0.35rem 1rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--purple-light); margin-bottom: 1.2rem;
+  }
+  .page-header h1 {
+    position: relative; z-index: 1;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    letter-spacing: 3px; color: var(--white); line-height: 1; margin-bottom: 1rem;
+  }
+  .page-header h1 span { color: var(--purple-light); }
+  .page-header p {
+    position: relative; z-index: 1;
+    color: var(--muted); font-size: 1rem; max-width: 520px; margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .divider { border: none; border-top: 1px solid rgba(124,58,237,0.15); margin: 0; }
+
+  /* LAYOUT */
+  .booking-wrap {
+    max-width: 1100px; margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* FORM CARD */
+  .booking-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+  }
+  .booking-card h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem; letter-spacing: 2px;
+    color: var(--white); margin-bottom: 0.4rem;
+  }
+  .card-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.75rem; line-height: 1.6; }
+
+  /* FORM */
+  .form-group { margin-bottom: 1.15rem; }
+  .form-group label {
+    display: block; font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    color: var(--purple-light); margin-bottom: 0.45rem;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    padding: 0.72rem 1rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--border-active);
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.12);
+  }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+
+  /* SERVICE PILLS */
+  .service-label {
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    color: var(--purple-light); margin-bottom: 0.6rem; display: block;
+  }
+  .service-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.15rem; }
+  .service-pill {
+    padding: 0.45rem 0.9rem; border-radius: 999px;
+    border: 1px solid var(--border); background: transparent;
+    color: var(--muted); font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
+  }
+  .service-pill:hover { border-color: var(--purple-light); color: var(--purple-light); }
+  .service-pill.active {
+    background: rgba(124,58,237,0.2); border-color: var(--purple-light);
+    color: var(--purple-light); font-weight: 600;
+  }
+
+  .btn-submit {
+    width: 100%; margin-top: 0.5rem;
+    background: var(--purple); color: #fff;
+    border: none; border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 700; letter-spacing: 0.5px;
+    padding: 0.9rem; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-submit:hover { background: var(--purple-dark); transform: translateY(-2px); }
+
+  /* SUCCESS */
+  .success-msg { display: none; text-align: center; padding: 2rem 1rem; }
+  .success-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(34,197,94,0.15); border: 2px solid #22c55e;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem; font-size: 1.5rem;
+  }
+  .success-msg h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--white); letter-spacing: 2px; margin-bottom: 0.5rem; }
+  .success-msg p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+
+  /* CALENDLY CARD */
+  .calendly-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    min-height: 700px;
+  }
+
+  .calendly-inline-widget {
+    min-width: 100%;
+    height: 700px;
+    border-radius: 20px;
+  }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 2.5rem 2rem; text-align: center; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; color: var(--purple-light); margin-bottom: 0.5rem; }
+  .footer-logo span { color: var(--white); }
+  .footer-copy { color: var(--muted); font-size: 0.85rem; }
+  .footer-links { margin-top: 0.75rem; display: flex; justify-content: center; gap: 1.5rem; }
+  .footer-links a { color: var(--muted); font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--purple-light); }
+
+  @media (max-width: 900px) {
+    .booking-wrap { grid-template-columns: 1fr; }
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .calendly-inline-widget { height: 600px; }
+  }
+
+  /* PACKAGES */
+  .package-list { display: grid; gap: 0.6rem; margin-bottom: 0.5rem; }
+  .package-option {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--input-bg);
+    cursor: pointer;
+    transition: all 0.2s;
+    gap: 1rem;
+  }
+  .package-option:hover { border-color: var(--purple-light); background: rgba(124,58,237,0.08); }
+  .package-option.active { border-color: var(--purple-light); background: rgba(124,58,237,0.15); }
+  .package-name { font-weight: 600; font-size: 0.95rem; color: var(--white); }
+  .package-desc { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+  .package-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 1px; color: var(--purple-light); white-space: nowrap; }
+
+  /* ADD-ONS */
+  .addon-list { display: grid; gap: 0.5rem; margin-bottom: 0.5rem; }
+  .addon-option {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--input-bg);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .addon-option:hover { border-color: var(--purple-light); }
+  .addon-option.active { border-color: var(--purple-light); background: rgba(124,58,237,0.15); }
+  .addon-check {
+    width: 22px; height: 22px; border-radius: 6px;
+    border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; color: transparent;
+    flex-shrink: 0; transition: all 0.2s;
+    background: var(--input-bg);
+  }
+  .addon-option.active .addon-check { background: var(--purple); border-color: var(--purple); color: #fff; }
+  .addon-info { flex: 1; }
+  .addon-name { font-size: 0.92rem; font-weight: 500; color: var(--text); }
+  .addon-price { font-size: 0.9rem; font-weight: 600; color: var(--purple-light); white-space: nowrap; }
+
+  /* TOTAL */
+  .total-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 1.25rem;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    background: rgba(124,58,237,0.12);
+    border: 1px solid var(--border-active);
+  }
+  .total-label { font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+  .total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 2px; color: var(--purple-light); }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <img class="brand-logo" src="3-removebg.png" alt="King's Detailer logo">
+    <div class="nav-logo"><span>King's</span> Detailer</div>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="team.html">Team</a>
+    <a href="works.html">Services</a>
+    <a href="privacy.html" >Privacy</a>
+  </div>
+  <a href="booking.html" class="nav-cta">Book a Detail</a>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-grid"></div>
+  <div class="page-header-badge">Reservations</div>
+  <h1>Book a <span>Detail</span></h1>
+  <p>Fill in your vehicle info on the left, then pick your date and time on the right. We'll see you soon.</p>
+</div>
+
+<hr class="divider" />
+
+<div class="booking-wrap">
+
+  <!-- LEFT: FORM -->
+  <div class="booking-card">
+    <h2>Your Info</h2>
+    <p class="card-desc">Tell us about yourself and your vehicle so we can prep for your detail. Please note that this is an estimated cost and can change based on the conditions of your car.</p>
+
+        <form id="bookingForm" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="submitBooking(event)">
+      <input type="hidden" name="form-name" value="booking" />
+      <input type="hidden" name="package" id="packageInput" value="" />
+      <input type="hidden" name="addons" id="addonsInput" value="" />
+      <input type="hidden" name="total" id="totalInput" value="" />
+      <p style="display:none"><input name="bot-field" /></p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" id="firstName" name="first-name" placeholder="John" required />
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" id="lastName" name="last-name" placeholder="Smith" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Vehicle Make</label>
+          <input type="text" id="make" name="vehicle-make" placeholder="Toyota" required />
+        </div>
+        <div class="form-group">
+          <label>Vehicle Model</label>
+          <input type="text" id="model" name="vehicle-model" placeholder="Camry" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Year</label>
+          <input type="text" id="year" name="vehicle-year" placeholder="2022" maxlength="4" />
+        </div>
+        <div class="form-group">
+          <label>Color</label>
+          <input type="text" id="color" name="vehicle-color" placeholder="White" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Service Address</label>
+        <input type="text" id="address" name="address" placeholder="123 Main St, Denton, TX" required />
+      </div>
+
+      <!-- PACKAGES -->
+      <span class="service-label" style="margin-top:0.5rem;">Select a Package</span>
+      <div class="package-list">
+        <div class="package-option" onclick="selectPackage(this, 'Basic Interior Detail', 110)">
+          <div class="package-info">
+            <div class="package-name">Basic Interior Detail</div>
+            <div class="package-desc">Full vacuum, wipe down, windows, and more</div>
+          </div>
+          <div class="package-price">$110</div>
+        </div>
+        <div class="package-option" onclick="selectPackage(this, 'Basic Exterior Detail', 95)">
+          <div class="package-info">
+            <div class="package-name">Basic Exterior Detail</div>
+            <div class="package-desc">Foam wash, hand dry, wheels, tires, and trim</div>
+          </div>
+          <div class="package-price">$95</div>
+        </div>
+        <div class="package-option" onclick="selectPackage(this, 'Full Detail', 190)">
+          <div class="package-info">
+            <div class="package-name">Full Detail</div>
+            <div class="package-desc">Complete interior + exterior treatment</div>
+          </div>
+          <div class="package-price">$190</div>
+        </div>
+      </div>
+
+      <!-- ADD-ONS -->
+      <span class="service-label" style="margin-top:1.25rem;">Add-Ons</span>
+      <div class="addon-list">
+        <div class="addon-option" onclick="toggleAddon(this, 'Wax', 40)">
+          <div class="addon-check">&#10003;</div>
+          <div class="addon-info"><div class="addon-name">Wax</div></div>
+          <div class="addon-price">+$40</div>
+        </div>
+        <div class="addon-option" onclick="toggleAddon(this, 'Excessive Pet Hair Removal', 20)">
+          <div class="addon-check">&#10003;</div>
+          <div class="addon-info"><div class="addon-name">Excessive Pet Hair Removal</div></div>
+          <div class="addon-price">+$20</div>
+        </div>
+      </div>
+
+      <!-- TOTAL -->
+      <div class="total-bar">
+        <div class="total-label">Estimated Total</div>
+        <div class="total-amount" id="totalDisplay">&#8212;</div>
+      </div>
+
+      <div class="form-group" style="margin-top:1rem;">
+        <label>Notes (optional)</label>
+        <textarea id="notes" name="notes" placeholder="Pet hair, stains, specific concerns..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">Submit Info &#8594;</button>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      <div class="success-icon">✓</div>
+      <h3>Info Received!</h3>
+      <p>Now pick your date and time on the right using the calendar. We'll confirm everything shortly.</p>
+    </div>
+  </div>
+
+  <!-- RIGHT: CALENDLY -->
+  <div class="calendly-card">
+    <div
+      class="calendly-inline-widget"
+      data-url="https://calendly.com/mkingdetails/book-a-detail?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=16161f&text_color=f0eeff&primary_color=7c3aed"
+    ></div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo"><span>King's</span> Detailer</div>
+  <p class="footer-copy">© 2026 King's Detailer · Denton, TX · All rights reserved</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="works.html">Services</a>
+    <a href="team.html">Team</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+</footer>
+
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+  let selectedPackagePrice = 0;
+  let selectedAddons = {};
+
+  function selectPackage(el, name, price) {
+    document.querySelectorAll('.package-option').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    selectedPackagePrice = price;
+    document.getElementById('packageInput').value = name + ' ($' + price + ')';
+    updateTotal();
+  }
+
+  function toggleAddon(el, name, price) {
+    el.classList.toggle('active');
+    if (el.classList.contains('active')) {
+      selectedAddons[name] = price;
+    } else {
+      delete selectedAddons[name];
+    }
+    const addonNames = Object.keys(selectedAddons);
+    document.getElementById('addonsInput').value = addonNames.length ? addonNames.join(', ') : 'None';
+    updateTotal();
+  }
+
+  function updateTotal() {
+    if (selectedPackagePrice === 0) {
+      document.getElementById('totalDisplay').textContent = '—';
+      document.getElementById('totalInput').value = '';
+      return;
+    }
+    const addonTotal = Object.values(selectedAddons).reduce((a, b) => a + b, 0);
+    const total = selectedPackagePrice + addonTotal;
+    document.getElementById('totalDisplay').textContent = '$' + total;
+    document.getElementById('totalInput').value = '$' + total;
+  }
+
+  function submitBooking(e) {
+    e.preventDefault();
+    if (!document.getElementById('packageInput').value) {
+      alert('Please select a package before submitting.');
+      return;
+    }
+    const form = document.getElementById('bookingForm');
+    const data = new FormData(form);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString()
+    })
+    .then(() => {
+      form.style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    })
+    .catch(() => {
+      alert('Something went wrong. Please try again or call us directly.');
+    });
+  }
+</script>
+
+</body>
+</html>
