@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta property="og:title" content="King's Detailer — Denton, TX" />
+  <meta property="og:title" content="MK Car Details — Denton, TX" />
 <meta property="og:description" content="Premium car detailing in Denton, TX." />
 <meta property="og:image" content="og-image.jpg" />
 <meta property="og:type" content="website" />
   <link rel="icon" type="image/png" href="favicon.png" />
-  <meta name="description" content="King's Detailer offers premium interior and exterior car detailing in Denton, TX. Book your detail today." />
+  <meta name="description" content="MK Car Details offers premium interior and exterior car detailing in Denton, TX. Book your detail today." />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>MK Details — Denton, TX</title>
+<title>MK Car Details — Denton, TX</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -162,6 +162,63 @@
   .success-msg .success-icon { font-size: 2rem; margin-bottom: 0.5rem; }
   .success-msg strong { color: var(--white); display: block; font-size: 1.1rem; margin-bottom: 0.4rem; }
 
+  /* SALE POPUP */
+  .sale-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    z-index: 200;
+  }
+  .sale-popup-overlay.hidden { display: none; }
+  .sale-popup {
+    position: relative;
+    width: min(100%, 460px);
+    background: linear-gradient(135deg, var(--card), #24133f);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.6rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    text-align: center;
+  }
+  .sale-popup-close {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  .sale-popup-badge {
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(124, 58, 237, 0.2);
+    color: var(--purple-light);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+  }
+  .sale-popup h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 1.5px;
+    color: var(--white);
+    margin-bottom: 0.7rem;
+  }
+  .sale-popup p {
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
   /* FOOTER */
   footer { background: var(--dark); border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
   .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 2px; color: var(--purple-light); }
@@ -184,7 +241,7 @@
   <div class="nav-logo">
     <div class="brand">
       <img class="brand-logo" src="3-removebg.png" alt="MK Details logo">
-      <div><span>MK</span> Details</div>
+      <div><span>MK</span> Car Details</div>
     </div>
   </div>
   <div class="nav-links">
@@ -195,6 +252,16 @@
   </div>
   <a href="booking.html" class="nav-cta">Book a Detail</a>
 </nav>
+<!-- SALE POPUP -->
+<div class="sale-popup-overlay" id="salePopup">
+  <div class="sale-popup" role="dialog" aria-modal="true" aria-labelledby="salePopupTitle">
+    <button class="sale-popup-close" id="closeSalePopup" aria-label="Close sale notice">×</button>
+    <p class="sale-popup-badge">Limited Time</p>
+    <h3 id="salePopupTitle">Opening Sale: 15% Off Full Details</h3>
+    <p>Book before August 15th and use code OPENING at checkout for 15% off your premium detail..</p>
+    <a href="booking.html" class="btn-primary">Claim the Offer</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -202,8 +269,8 @@
   <div class="hero-grid"></div>
   <img class="hero-logo-bg" src="3-removebg.png" alt="" aria-hidden="true">
   <div class="hero-badge">✦ Denton, TX</div>
-  <h1 class="hero-heading">MK<br><span>Details</span></h1>
-  <p class="hero-sub">Premium Auto Detailing</p>
+  <h1 class="hero-heading">MK<br><span>Car Details</span></h1>
+  <p class="hero-sub">Premium Car Detailing</p>
   <p>Professional interior and exterior detailing that makes your car look brand new every single time.</p>
   <div class="hero-btns">
     <a href="booking.html" class="btn-primary">Get a Booking</a>
@@ -218,14 +285,14 @@
   <div class="section-inner">
     <p class="section-label">What We Offer</p>
     <h2 class="section-title">Our Services</h2>
-    <p class="section-desc">Base prices listed below are 50% off for Opening Sale. Final booking price may vary depending on the condition of your vehicle — we'll always give you a fair assessment upfront.</p>
+    <p class="section-desc">Final booking price may vary depending on the condition of your vehicle — we'll always give you a fair assessment upfront.</p>
     <div class="services-grid">
       <div class="service-card">
         <div class="service-accent"></div>
         <div class="service-icon">🫧</div>
         <div class="service-name">Basic Interior</div>
         <p class="service-desc">Full interior vacuum, wipe-down and deep clean of all surfaces, window cleaning, and a fresh-smelling cabin.</p>
-        <div class="service-price"><span class="price-from">From</span><span class="price-num">$60</span></div>
+        <div class="service-price"><span class="price-from">From</span><span class="price-num">$120</span></div>
         <p class="price-note">*Final price based on vehicle condition</p>
       </div>
       <div class="service-card">
@@ -233,7 +300,7 @@
         <div class="service-icon">✨</div>
         <div class="service-name">Basic Exterior</div>
         <p class="service-desc">Hand wash, wheel cleaning, tire shine, and a polished exterior that turns heads.</p>
-        <div class="service-price"><span class="price-from">From</span><span class="price-num">$50</span></div>
+        <div class="service-price"><span class="price-from">From</span><span class="price-num">$100</span></div>
         <p class="price-note">*Final price based on vehicle condition</p>
       </div>
       <div class="service-card featured">
@@ -242,7 +309,7 @@
         <div class="service-icon">👑</div>
         <div class="service-name">Full Detail</div>
         <p class="service-desc">The complete package — full interior + exterior detailing for a showroom finish, inside and out.</p>
-        <div class="service-price"><span class="price-from">From</span><span class="price-num">$100</span></div>
+        <div class="service-price"><span class="price-from">From</span><span class="price-num">$200</span></div>
         <p class="price-note">*Final price based on vehicle condition</p>
       </div>
     </div>
@@ -255,8 +322,16 @@
         <div class="addon-info"><p class="addon-name">Pet Hair Removal</p><p class="addon-price">+$20</p></div>
       </div>
       <div class="addon-card">
-        <div class="addon-icon">💜</div>
+        <div class="addon-icon">🌟</div>
         <div class="addon-info"><p class="addon-name">Wax Coating</p><p class="addon-price">+$40</p></div>
+      </div>
+      <div class="addon-card">
+        <div class="addon-icon">🧻</div>
+        <div class="addon-info"><p class="addon-name">Clay Towel</p><p class="addon-price">+$30</p></div>
+      </div>
+      <div class="addon-card">
+        <div class="addon-icon">✇</div>
+        <div class="addon-info"><p class="addon-name">Tire Shine</p><p class="addon-price">+$15</p></div>
       </div>
     </div>
   </div>
@@ -281,11 +356,28 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><span>MK</span> DetailS</div>
-  <p class="footer-copy">© 2025-2026 MK Details · Denton, TX · All rights reserved</p>
+  <div class="footer-logo"><span>MK</span> Car DetailS</div>
+  <p class="footer-copy">© 2025-2026 MK Car Details · Denton, TX · All rights reserved</p>
 </footer>
 
 <script>
+  const salePopup = document.getElementById('salePopup');
+  const closeSalePopup = document.getElementById('closeSalePopup');
+
+  if (salePopup && closeSalePopup) {
+    closeSalePopup.addEventListener('click', () => salePopup.classList.add('hidden'));
+    salePopup.addEventListener('click', (event) => {
+      if (event.target === salePopup) {
+        salePopup.classList.add('hidden');
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        salePopup.classList.add('hidden');
+      }
+    });
+  }
+
   // Show success message after form submits (Netlify redirects back with ?submitted=true)
   const params = new URLSearchParams(window.location.search);
   if (params.get('submitted') === 'true') {

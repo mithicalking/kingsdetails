@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Book a Detail — MK Details</title>
-<meta name="description" content="Book your car detail with MK Details in Denton, TX. Choose your service, pick a date, and we'll take care of the rest." />
+<title>Book a Detail — MK Car Details</title>
+<meta name="description" content="Book your car detail with MK Car Details in Denton, TX. Choose your service, pick a date, and we'll take care of the rest." />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -272,6 +272,15 @@
   }
   .total-label { font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
   .total-amount { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 2px; color: var(--purple-light); }
+  .discount-group { margin-top: 1rem; }
+  .discount-helper { font-size: 0.75rem; color: var(--muted); margin-top: 0.4rem; }
+  .discount-message {
+    margin-top: 0.4rem;
+    font-size: 0.75rem;
+    color: #fca5a5;
+    display: none;
+  }
+  .discount-message.show { display: block; }
 
 </style>
 </head>
@@ -279,8 +288,8 @@
 
 <nav>
   <div class="brand">
-    <img class="brand-logo" src="3-removebg.png" alt="MK Details logo">
-    <div class="nav-logo"><span>MK</span> Details</div>
+    <img class="brand-logo" src="3-removebg.png" alt="MK Car Details logo">
+    <div class="nav-logo"><span>MK</span> Car Details</div>
   </div>
   <div class="nav-links">
     <a href="index.html">Home</a>
@@ -356,26 +365,26 @@
       <!-- PACKAGES -->
       <span class="service-label" style="margin-top:0.5rem;">Select a Package</span>
       <div class="package-list">
-        <div class="package-option" onclick="selectPackage(this, 'Basic Interior Detail', 60)">
+        <div class="package-option" onclick="selectPackage(this, 'Basic Interior Detail', 90)">
           <div class="package-info">
             <div class="package-name">Basic Interior Detail</div>
             <div class="package-desc">Full vacuum, wipe down, windows, and more</div>
           </div>
-          <div class="package-price">$60</div>
+          <div class="package-price">$120</div>
         </div>
-        <div class="package-option" onclick="selectPackage(this, 'Basic Exterior Detail', 50)">
+        <div class="package-option" onclick="selectPackage(this, 'Basic Exterior Detail', 75)">
           <div class="package-info">
             <div class="package-name">Basic Exterior Detail</div>
             <div class="package-desc">Foam wash, hand dry, wheels, tires, and trim</div>
           </div>
-          <div class="package-price">$50</div>
+          <div class="package-price">$100</div>
         </div>
-        <div class="package-option" onclick="selectPackage(this, 'Full Detail', 100)">
+        <div class="package-option" onclick="selectPackage(this, 'Full Detail', 150)">
           <div class="package-info">
             <div class="package-name">Full Detail</div>
             <div class="package-desc">Complete interior + exterior treatment</div>
           </div>
-          <div class="package-price">$100</div>
+          <div class="package-price">$200</div>
         </div>
       </div>
 
@@ -384,7 +393,7 @@
       <div class="addon-list">
         <div class="addon-option" onclick="toggleAddon(this, 'Wax', 40)">
           <div class="addon-check">&#10003;</div>
-          <div class="addon-info"><div class="addon-name">Wax</div></div>
+          <div class="addon-info"><div class="addon-name">Wax treatment</div></div>
           <div class="addon-price">+$40</div>
         </div>
         <div class="addon-option" onclick="toggleAddon(this, 'Excessive Pet Hair Removal', 20)">
@@ -392,11 +401,28 @@
           <div class="addon-info"><div class="addon-name">Excessive Pet Hair Removal</div></div>
           <div class="addon-price">+$20</div>
         </div>
+         <div class="addon-option" onclick="toggleAddon(this, 'Clay Towel', 30)">
+          <div class="addon-check">&#10003;</div>
+          <div class="addon-info"><div class="addon-name">Clay Towel</div></div>
+          <div class="addon-price">+$30</div>
+        </div>
+        <div class="addon-option" onclick="toggleAddon(this, 'Tire Shine', 15)">
+          <div class="addon-check">&#10003;</div>
+          <div class="addon-info"><div class="addon-name">Tire Shine</div></div>
+          <div class="addon-price">+$15</div>
+        </div>
+      </div>
+
+      <div class="form-group discount-group">
+        <label>Discount Code</label>
+        <input type="text" id="discountInput" name="discount" placeholder="Enter code" oninput="updateTotal()" />
+        <p class="discount-helper">Try OPENING for 15% off.</p>
+        <p class="discount-message" id="discountMessage">Invalid code. Please try another one.</p>
       </div>
 
       <!-- TOTAL -->
       <div class="total-bar">
-        <div class="total-label">Estimated Total</div>
+        <div class="total-label">Minimum Estimated Total</div>
         <div class="total-amount" id="totalDisplay">&#8212;</div>
       </div>
 
@@ -426,8 +452,8 @@
 </div>
 
 <footer>
-  <div class="footer-logo"><span>MK</span> Details</div>
-  <p class="footer-copy">© 2026 MK Details · Denton, TX · All rights reserved</p>
+  <div class="footer-logo"><span>MK</span> Car Details</div>
+  <p class="footer-copy">© 2026 MK Car Details · Denton, TX · All rights reserved</p>
   <div class="footer-links">
     <a href="index.html">Home</a>
     <a href="works.html">Services</a>
@@ -462,15 +488,31 @@
   }
 
   function updateTotal() {
+    const message = document.getElementById('discountMessage');
+
     if (selectedPackagePrice === 0) {
       document.getElementById('totalDisplay').textContent = '—';
       document.getElementById('totalInput').value = '';
+      message.classList.remove('show');
       return;
     }
+
     const addonTotal = Object.values(selectedAddons).reduce((a, b) => a + b, 0);
-    const total = selectedPackagePrice + addonTotal;
-    document.getElementById('totalDisplay').textContent = '$' + total;
-    document.getElementById('totalInput').value = '$' + total;
+    const code = document.getElementById('discountInput').value.trim().toUpperCase();
+    let discountAmount = 0;
+
+    if (code === 'OPENING') {
+      discountAmount = (selectedPackagePrice + addonTotal) * 0.15;
+      message.classList.remove('show');
+    } else if (code) {
+      message.classList.add('show');
+    } else {
+      message.classList.remove('show');
+    }
+
+    const total = Math.max(0, selectedPackagePrice + addonTotal - discountAmount);
+    document.getElementById('totalDisplay').textContent = '$' + total.toFixed(0);
+    document.getElementById('totalInput').value = '$' + total.toFixed(0);
   }
 
   function submitBooking(e) {
