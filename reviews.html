@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MK Car Details — Google Reviews</title>
+<meta name="description" content="See what customers say about MK Car Details on Google Reviews." />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #7c3aed;
+    --purple-dark: #5b21b6;
+    --purple-light: #a78bfa;
+    --black: #0a0a0a;
+    --dark: #111118;
+    --card: #16161f;
+    --border: rgba(124,58,237,0.25);
+    --text: #f0eeff;
+    --muted: #9d9db5;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--purple-light), var(--purple));
+    border-radius: 999px;
+    border: 2px solid #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--purple), var(--purple-dark));
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 2px; color: var(--purple-light); }
+  .nav-logo span { color: var(--white); }
+  .brand { display: inline-flex; align-items: center; gap: 0.6rem; }
+  .brand-logo { width: 52px; height: 52px; flex-shrink: 0; object-fit: cover; object-position: center; }
+  .nav-links {
+    position: absolute; left: 51%; top: 50%; transform: translate(-50%, -50%);
+    display: flex; gap: 2rem;
+  }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.5px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--purple-light); }
+  .nav-actions {
+    display: flex; align-items: center; gap: 0.75rem; margin-left: auto;
+  }
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 999px;
+    transition: all 0.2s ease;
+  }
+  .nav-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle.active span:nth-child(2) { opacity: 0; }
+  .nav-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .nav-cta { background: var(--purple); color: #fff !important; padding: 0.5rem 1.2rem; border-radius: 6px; transition: background 0.2s !important; }
+  .nav-cta:hover { background: var(--purple-dark) !important; }
+
+  .page-header {
+    position: relative; padding: 5rem 2rem 4rem; text-align: center; overflow: hidden;
+  }
+  .page-header-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(109,40,217,0.32) 0%, transparent 70%);
+  }
+  .page-header-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: linear-gradient(rgba(124,58,237,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(124,58,237,0.07) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .page-header-badge {
+    position: relative; z-index: 1;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(124,58,237,0.15); border: 1px solid var(--border);
+    border-radius: 100px; padding: 0.35rem 1rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--purple-light); margin-bottom: 1.2rem;
+  }
+  .page-header h1 {
+    position: relative; z-index: 1;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    letter-spacing: 3px; color: var(--white); line-height: 1; margin-bottom: 1rem;
+  }
+  .page-header h1 span { color: var(--purple-light); }
+  .page-header p {
+    position: relative; z-index: 1;
+    color: var(--muted); font-size: 1rem; max-width: 520px; margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .divider { border: none; border-top: 1px solid rgba(124,58,237,0.15); margin: 0; }
+
+  .section-inner { max-width: 1060px; margin: 0 auto; padding: 5rem 2rem; }
+  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--purple-light); margin-bottom: 0.6rem; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: 2px; color: var(--white); margin-bottom: 0.75rem; }
+  .section-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 720px; margin-bottom: 2.5rem; }
+
+  .rating-banner {
+    display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.9rem 1.2rem;
+    border-radius: 999px; background: rgba(124,58,237,0.12);
+    border: 1px solid var(--border); color: var(--white);
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+  .rating-banner span { color: var(--purple-light); font-size: 1.2rem; }
+
+  .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; }
+  .review-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .review-stars { color: #facc15; font-size: 1.15rem; letter-spacing: 0.1em; }
+  .review-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--white); }
+  .review-meta { color: var(--muted); font-size: 0.88rem; }
+  .review-text { color: var(--muted); line-height: 1.75; font-size: 0.95rem; }
+
+  .cta-block {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 2rem 2.3rem;
+    border-radius: 18px;
+    background: rgba(124,58,237,0.08);
+    border: 1px solid rgba(124,58,237,0.14);
+  }
+  .cta-block p { color: var(--text); font-size: 1rem; max-width: 720px; line-height: 1.7; }
+  .btn-primary {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--purple); color: #fff; padding: 0.95rem 1.8rem;
+    border-radius: 10px; text-decoration: none;
+    font-weight: 600; letter-spacing: 0.2px;
+  }
+  .btn-primary:hover { background: var(--purple-dark); }
+
+  footer { border-top: 1px solid var(--border); padding: 2.5rem 2rem; text-align: center; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; color: var(--purple-light); margin-bottom: 0.5rem; }
+  .footer-logo span { color: var(--white); }
+  .footer-copy { color: var(--muted); font-size: 0.85rem; }
+
+  @media (max-width: 780px) {
+    nav { padding: 0.8rem 1rem; }
+    .nav-actions { gap: 0.5rem; }
+    .nav-cta { display: none; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.7rem);
+      left: 1rem;
+      right: 1rem;
+      transform: none;
+      flex-direction: column;
+      gap: 0.8rem;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(10,10,10,0.96);
+      box-shadow: 0 20px 45px rgba(2, 6, 23, 0.35);
+    }
+    .nav-links.open { display: flex; }
+    .page-header { padding: 3rem 1rem 2.25rem; }
+    .section-inner { padding: 3rem 1rem; }
+    .review-grid { grid-template-columns: 1fr; }
+    .cta-block { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <img class="brand-logo" src="3-removebg.png" alt="MK Car Details logo">
+    <div class="nav-logo"><span>MK</span> Car Details</div>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="team.html">About Me</a>
+    <a href="works.html">Service Packages</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <a href="booking.html" class="nav-cta">Book a Detail</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-grid"></div>
+  <div class="page-header-badge">Google Reviews</div>
+  <h1>Customer <span>Feedback</span></h1>
+  <p>See the real star ratings and comments from local Denton drivers who trust MK Car Details for their vehicles.</p>
+</div>
+
+<hr class="divider" />
+
+<section class="section-inner">
+  <p class="section-label">Verified Reviews</p>
+  <h2 class="section-title">What people are saying</h2>
+  <p class="section-desc">These are excerpts from Google Reviews and local customer feedback. Every detail is handled with care.</p>
+
+  <div class="rating-banner">
+    <span>5.0 / 5.0</span> · 2 Google Reviews
+  </div>
+
+  <div class="review-grid">
+    <article class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <h3 class="review-title">Outstanding detail work</h3>
+      <p class="review-meta">Allie · Denton, TX</p>
+      <p class="review-text">No Description</p>
+    </article>
+
+    <article class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <h3 class="review-title">Best mobile detail</h3>
+      <p class="review-meta">Lewis · Denton, TX</p>
+      <p class="review-text">Mitchell did a really good job. My truck has not been as clean since it was new. Keep up the Good work.</p>
+    </article>
+
+
+
+  <div class="cta-block">
+    <p>Ready to leave your own review? Help others discover MK Car Details by sharing your experience on Google.</p>
+    <a href="https://share.google/StFHIylSU2clLHp0h" target="_blank" rel="noopener" class="btn-primary">Leave a Google Review</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><span>MK</span> Car Details</div>
+  <p class="footer-copy">© 2025-2026 MK Car Details · Denton, TX · All rights reserved</p>
+</footer>
+
+<script>
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.getElementById('navLinks');
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('active', isOpen);
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!navToggle.contains(event.target) && !navLinks.contains(event.target)) {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
