@@ -437,21 +437,46 @@
       </div>
 
       <!-- PACKAGES -->
+      <div style="margin-bottom: 1rem;">
+        <span class="service-label">Monthly Service</span>
+        <div class="package-option" onclick="selectPackage(this, 'Monthly Maintenance', 70)">
+          <div class="package-info">
+            <div class="package-name">Monthly Maintenance</div>
+            <div class="package-desc">Regular upkeep with wash, interior wipe-down, windows, and tire dressing if wanted. $120 Initial Payment</div>
+          </div>
+          <div class="package-price">$70 Monthly Fee</div>
+        </div>
+      </div>
+
       <span class="service-label" style="margin-top:0.5rem;">Select a Package</span>
       <div class="package-list">
-        <div class="package-option" onclick="selectPackage(this, 'Basic Interior Detail', 90)">
+        <div class="package-option" onclick="selectPackage(this, 'Basic Interior Detail', 120)">
           <div class="package-info">
             <div class="package-name">Basic Interior Detail</div>
             <div class="package-desc">Full vacuum, wipe down, windows, and more</div>
           </div>
           <div class="package-price">$120</div>
         </div>
-        <div class="package-option" onclick="selectPackage(this, 'Basic Exterior Detail', 75)">
+        <div class="package-option" onclick="selectPackage(this, 'Basic Exterior Detail', 100)">
           <div class="package-info">
             <div class="package-name">Basic Exterior Detail</div>
             <div class="package-desc">Foam wash, hand dry, wheels, tires, and trim</div>
           </div>
           <div class="package-price">$100</div>
+        </div>
+        <div class="package-option" onclick="selectPackage(this, 'Premium Interior Detail', 170)">
+          <div class="package-info">
+            <div class="package-name">Premium Interior Detail</div>
+            <div class="package-desc">Deep interior clean and odor elimination</div>
+          </div>
+          <div class="package-price">$170</div>
+        </div>
+        <div class="package-option" onclick="selectPackage(this, 'Deluxe Exterior Detail', 160)">
+          <div class="package-info">
+            <div class="package-name">Deluxe Exterior Detail</div>
+            <div class="package-desc">Clay bar treatment and wax/sealant</div>
+          </div>
+          <div class="package-price">$160</div>
         </div>
         <div class="package-option" onclick="selectPackage(this, 'Full Detail', 150)">
           <div class="package-info">
