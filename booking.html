@@ -210,6 +210,11 @@
     color: var(--purple-light); font-weight: 600;
   }
 
+  .booking-card form {
+    display: block;
+    width: 100%;
+  }
+
   .btn-submit {
     width: 100%; margin-top: 0.5rem;
     background: var(--purple); color: #fff;
@@ -287,6 +292,7 @@
   .package-list { display: grid; gap: 0.6rem; margin-bottom: 0.5rem; }
   .package-option {
     display: flex; align-items: center; justify-content: space-between;
+    width: 100%;
     padding: 0.9rem 1rem;
     border-radius: 12px;
     border: 1px solid var(--border);
@@ -297,6 +303,7 @@
   }
   .package-option:hover { border-color: var(--purple-light); background: rgba(124,58,237,0.08); }
   .package-option.active { border-color: var(--purple-light); background: rgba(124,58,237,0.15); }
+  .package-info { flex: 1; min-width: 0; }
   .package-name { font-weight: 600; font-size: 0.95rem; color: var(--white); }
   .package-desc { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
   .package-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 1px; color: var(--purple-light); white-space: nowrap; }
@@ -439,7 +446,7 @@
       <!-- PACKAGES -->
       <div style="margin-bottom: 1rem;">
         <span class="service-label">Monthly Service</span>
-        <div class="package-option" onclick="selectPackage(this, 'Monthly Maintenance', 70)">
+        <div class="package-option" onclick="selectPackage(this, 'Monthly Maintenance', 120)">
           <div class="package-info">
             <div class="package-name">Monthly Maintenance</div>
             <div class="package-desc">Regular upkeep with wash, interior wipe-down, windows, and tire dressing if wanted. $120 Initial Payment</div>
@@ -450,40 +457,47 @@
 
       <span class="service-label" style="margin-top:0.5rem;">Select a Package</span>
       <div class="package-list">
-        <div class="package-option" onclick="selectPackage(this, 'Basic Interior Detail', 120)">
+        <div class="package-option" onclick="selectPackage(this, 'Basic Interior Detail', 80)">
           <div class="package-info">
             <div class="package-name">Basic Interior Detail</div>
             <div class="package-desc">Full vacuum, wipe down, windows, and more</div>
           </div>
-          <div class="package-price">$120</div>
+          <div class="package-price">$80</div>
         </div>
-        <div class="package-option" onclick="selectPackage(this, 'Basic Exterior Detail', 100)">
+        <div class="package-option" onclick="selectPackage(this, 'Basic Exterior Detail', 60)">
           <div class="package-info">
             <div class="package-name">Basic Exterior Detail</div>
             <div class="package-desc">Foam wash, hand dry, wheels, tires, and trim</div>
           </div>
-          <div class="package-price">$100</div>
+          <div class="package-price">$60</div>
         </div>
-        <div class="package-option" onclick="selectPackage(this, 'Premium Interior Detail', 170)">
+        <div class="package-option" onclick="selectPackage(this, 'Premium Interior Detail', 120)">
           <div class="package-info">
             <div class="package-name">Premium Interior Detail</div>
             <div class="package-desc">Deep interior clean and odor elimination</div>
           </div>
-          <div class="package-price">$170</div>
+          <div class="package-price">$120</div>
         </div>
-        <div class="package-option" onclick="selectPackage(this, 'Deluxe Exterior Detail', 160)">
+        <div class="package-option" onclick="selectPackage(this, 'Deluxe Exterior Detail', 100)">
           <div class="package-info">
             <div class="package-name">Deluxe Exterior Detail</div>
             <div class="package-desc">Clay bar treatment and wax/sealant</div>
           </div>
-          <div class="package-price">$160</div>
+          <div class="package-price">$100</div>
         </div>
-        <div class="package-option" onclick="selectPackage(this, 'Full Detail', 150)">
+        <div class="package-option" onclick="selectPackage(this, 'Full Detail', 120)">
           <div class="package-info">
             <div class="package-name">Full Detail</div>
             <div class="package-desc">Complete interior + exterior treatment</div>
           </div>
-          <div class="package-price">$200</div>
+          <div class="package-price">$120</div>
+        </div>
+        <div class="package-option" onclick="selectPackage(this, 'Deluxe Full Detail', 185)">
+          <div class="package-info">
+            <div class="package-name">Deluxe Full Detail</div>
+            <div class="package-desc">Complete premium interior + deluxe exterior treatment</div>
+          </div>
+          <div class="package-price">$185</div>
         </div>
       </div>
 
@@ -520,7 +534,7 @@
       <div class="form-group discount-group">
         <label>Discount Code</label>
         <input type="text" id="discountInput" name="discount" placeholder="Enter code" oninput="updateTotal()" />
-        <p class="discount-helper">Try OPENING for 15% off.</p>
+        <p class="discount-helper">Try NEIGHBORHOOD for 15% off.</p>
         <p class="discount-message" id="discountMessage">Invalid code. Please try another one.</p>
       </div>
 
@@ -605,7 +619,9 @@
     const code = document.getElementById('discountInput').value.trim().toUpperCase();
     let discountAmount = 0;
 
-    if (code === 'OPENING') {
+//Discount Codes
+
+    if (code === 'NEIGHBORHOOD') {
       discountAmount = (selectedPackagePrice + addonTotal) * 0.15;
       message.classList.remove('show');
     } else if (code) {
